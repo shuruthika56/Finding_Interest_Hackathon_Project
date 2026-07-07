@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="HackathonSuite">
+
+
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+    </listeners>
+
+
+    <test name="CarLoanEMITest">
+        <classes>
+            <class name="tests.CarLoanEMITest"/>
+        </classes>
+    </test>
+
+    <test name="HomeLoanTest">
+        <classes>
+            <class name="tests.HomeLoanTest"/>
+        </classes>
+    </test>
+
+    <test name="LoanCalculatorTest">
+        <classes>
+            <class name="tests.LoanCalculatorTest"/>
+        </classes>
+    </test>
+
+</suite>
