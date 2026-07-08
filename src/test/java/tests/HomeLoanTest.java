@@ -1,7 +1,7 @@
 package tests;
 
 import base.BaseClass;
-import org.openqa.selenium.WebDriver;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -10,20 +10,13 @@ import pages.HomeLoanPage;
 import utilities.ExcelUtility;
 import utilities.ExtentReport;
 import utilities.ConfigReader;
-import org.testng.annotations.Listeners;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import listeners.TestListener;
+
 
 
 public class HomeLoanTest extends BaseClass {
 
     ExtentReport erm;
 
-    //WebDriver driver;
-
-   // HomeLoanPage page;
 
     @BeforeTest
     public void startReporter()
@@ -34,9 +27,9 @@ public class HomeLoanTest extends BaseClass {
     }
 
     @Test(priority = 1)
-    public void verifyNavigationToCarLoan() {
-        HomeLoanPage page  = new HomeLoanPage(driver);
-       //page.navigateToHomeLoan();
+    public void verifyNavigationToHomeLoan() {
+        HomeLoanPage page  = new HomeLoanPage(getDriver());
+        //page.navigateToHomeLoan();
         System.out.println("Successfully Launched");
         Assert.assertTrue(
                 page.verifyInputFields(),
@@ -47,7 +40,7 @@ public class HomeLoanTest extends BaseClass {
     @Test(priority = 2)
     public void verifyEnterData(){
 
-        HomeLoanPage page  = new HomeLoanPage(driver);
+        HomeLoanPage page  = new HomeLoanPage(getDriver());
 
         ConfigReader cr = new ConfigReader();
 
@@ -79,7 +72,7 @@ public class HomeLoanTest extends BaseClass {
 
     @Test(priority = 3)
     public void verifyRepaymentTableDisplayed(){
-        HomeLoanPage page  = new HomeLoanPage(driver);
+        HomeLoanPage page  = new HomeLoanPage(getDriver());
 
         page.scrollDown();
 
@@ -93,11 +86,11 @@ public class HomeLoanTest extends BaseClass {
     @Test(priority = 4)
     public void verifyDataExcel(){
 
-        HomeLoanPage page  = new HomeLoanPage(driver);
+        HomeLoanPage page  = new HomeLoanPage(getDriver());
 
         page.scrollDown();
         ExcelUtility.writeHomeLoanTableToExcel(
-                driver,
+                getDriver(),
                 "Home_Loan.xlsx",
                 "Home_Loan");
 

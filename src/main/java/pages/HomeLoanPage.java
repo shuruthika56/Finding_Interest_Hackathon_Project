@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomeLoanPage extends CommonLocators {
+public class HomeLoanPage  {
 
     WebDriver driver;
 
@@ -20,24 +20,17 @@ public class HomeLoanPage extends CommonLocators {
     @FindBy(xpath = "//*[@id='home-loan']/a")
     WebElement homeLoanMenu;
 
-    // Textboxes
+    @FindBy(xpath = "//table")
+    WebElement repaymentTable;
 
-    /*@FindBy(id = "loanamount")
+    @FindBy(id = "loanamount")
     WebElement loanAmount;
 
     @FindBy(id = "loaninterest")
     WebElement interestRate;
 
     @FindBy(id = "loanterm")
-    WebElement loanTenure;*/
-
-    // EMI Result
-
-
-
-
-    @FindBy(xpath = "//table")
-    WebElement repaymentTable;
+    WebElement loanTenure;
 
 
 
@@ -58,21 +51,21 @@ public class HomeLoanPage extends CommonLocators {
     public void enterLoanAmount(String amount) {
 
         loanAmount.sendKeys(Keys.CONTROL + "a");
-        //loanAmount.sendKeys(Keys.BACK_SPACE);
+        loanAmount.sendKeys(Keys.BACK_SPACE);
         loanAmount.sendKeys(amount);
     }
 
     public void enterInterest(String interest) {
 
         interestRate.sendKeys(Keys.CONTROL + "a");
-        //interestRate.sendKeys(Keys.BACK_SPACE);
+        interestRate.sendKeys(Keys.BACK_SPACE);
         interestRate.sendKeys(interest);
     }
 
     public void enterTenure(String tenure) {
 
         loanTenure.sendKeys(Keys.CONTROL + "a");
-        //loanTenure.sendKeys(Keys.BACK_SPACE);
+        loanTenure.sendKeys(Keys.BACK_SPACE);
         loanTenure.sendKeys(tenure);
     }
 

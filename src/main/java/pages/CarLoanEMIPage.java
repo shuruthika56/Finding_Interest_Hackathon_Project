@@ -6,9 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.JavascriptExecutor;
 
-public class CarLoanEMIPage  extends CommonLocators{
+public class CarLoanEMIPage {
 
-   WebDriver driver;
+    WebDriver driver;
 
     public CarLoanEMIPage(WebDriver driver) {
 
@@ -46,13 +46,22 @@ public class CarLoanEMIPage  extends CommonLocators{
     WebElement btn;
 
 
-    @FindBy(xpath = "//*[@id='monthyear2026']/td/div/table/tbody/tr[1]/td[3]")
+    @FindBy(xpath = "//*[@id='monthyear2026']//tr[1]/td[3]")
     WebElement firstMonthInterest;
 
     // Month 1 Principal
 
-    @FindBy(xpath = "//*[@id='monthyear2026']/td/div/table/tbody/tr[1]/td[2]")
+    @FindBy(xpath = "//*[@id='monthyear2026']//tr[1]/td[2]")
     WebElement firstMonthPrincipal;
+
+    @FindBy(id = "loanamount")
+    WebElement loanAmount;
+
+    @FindBy(id = "loaninterest")
+    WebElement interestRate;
+
+    @FindBy(id = "loanterm")
+    WebElement loanTenure;
 
 
     public void navigateToCarLoan() {
@@ -70,21 +79,21 @@ public class CarLoanEMIPage  extends CommonLocators{
     public void enterLoanAmount(String amount) {
 
         loanAmount.sendKeys(Keys.CONTROL + "a");
-        //loanAmount.sendKeys(Keys.BACK_SPACE);
+        loanAmount.sendKeys(Keys.BACK_SPACE);
         loanAmount.sendKeys(amount);
     }
 
     public void enterInterest(String interest) {
 
         interestRate.sendKeys(Keys.CONTROL + "a");
-        //interestRate.sendKeys(Keys.BACK_SPACE);
+        interestRate.sendKeys(Keys.BACK_SPACE);
         interestRate.sendKeys(interest);
     }
 
     public void enterTenure(String tenure) {
 
         loanTenure.sendKeys(Keys.CONTROL + "a");
-        //loanTenure.sendKeys(Keys.BACK_SPACE);
+        loanTenure.sendKeys(Keys.BACK_SPACE);
         loanTenure.sendKeys(tenure);
     }
 
