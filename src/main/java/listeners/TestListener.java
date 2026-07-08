@@ -25,7 +25,7 @@ public class TestListener implements ITestListener {
 
             String screenshotPath =
                     ScreenShotUtility.screenShotTC(
-                            BaseClass.driver,
+                            BaseClass.getDriver(),
                             result.getName());
 
             System.out.println(
