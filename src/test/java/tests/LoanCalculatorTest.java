@@ -24,9 +24,9 @@ public class LoanCalculatorTest extends BaseClass {
     public void verifyNavigationToLoanCalculator() {
 
         LoanCalculatorPage page =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
-       // page.clickMenu();
+        // page.clickMenu();
         page.clickloanWidgets();
         page.clickLoancal();
         System.out.println("Successfully Launched");
@@ -35,13 +35,13 @@ public class LoanCalculatorTest extends BaseClass {
                 "Input fields not displayed");
     }
 
-   @Test(priority = 2)
+    @Test(priority = 2)
     public void verifyLoanAmountTextBoxAndSliderEMI() throws Exception {
 
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         String expectedLoanAmount =
                 rc.getLoanAmount();
@@ -94,7 +94,7 @@ public class LoanCalculatorTest extends BaseClass {
         erm.logPass("Loan Amount:Slider position successfully changed in  EMI Calculator");
 
 
-       // erm.logPass("");
+        // erm.logPass("");
 
 //        Thread.sleep((1000));
 
@@ -126,7 +126,7 @@ public class LoanCalculatorTest extends BaseClass {
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         String expectedInterestAmount =
                 rc.getInterestRate();
@@ -154,7 +154,7 @@ public class LoanCalculatorTest extends BaseClass {
 
 //        Thread.sleep((1000));
 
-       // lp.scrollDown();
+        // lp.scrollDown();
 
         // Move slider
         lp.moveInterestAmountSlider();
@@ -206,7 +206,7 @@ public class LoanCalculatorTest extends BaseClass {
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         String expectedTenureAmount =
                 rc.getLoanTenure();
@@ -288,7 +288,7 @@ public class LoanCalculatorTest extends BaseClass {
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
         lp.clickMonth();
 
         String expectedTenureAmount =
@@ -371,7 +371,7 @@ public class LoanCalculatorTest extends BaseClass {
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         String expectedFeesAmount =
                 rc.getFeesCharges();
@@ -451,7 +451,7 @@ public class LoanCalculatorTest extends BaseClass {
     public void verifyNavigationToLoanAmountCalculator() {
 
         LoanCalculatorPage page =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         page.clickLoanAmount();
 
@@ -467,7 +467,7 @@ public class LoanCalculatorTest extends BaseClass {
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         String expectedEMIAmount =
                 rc.getEmi();
@@ -552,7 +552,7 @@ public class LoanCalculatorTest extends BaseClass {
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         String expectedInterestAmount =
                 rc.getInterestRate();
@@ -632,7 +632,7 @@ public class LoanCalculatorTest extends BaseClass {
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         String expectedTenureAmount =
                 rc.getLoanTenure();
@@ -714,7 +714,7 @@ public class LoanCalculatorTest extends BaseClass {
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         lp.clickMonth();
 
@@ -798,7 +798,7 @@ public class LoanCalculatorTest extends BaseClass {
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         String expectedFeesAmount =
                 rc.getFeesCharges();
@@ -878,7 +878,7 @@ public class LoanCalculatorTest extends BaseClass {
     public void verifyNavigationToLoanTenureCalculator() {
 
         LoanCalculatorPage page =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         page.clickTenureCal();
 
@@ -894,7 +894,7 @@ public class LoanCalculatorTest extends BaseClass {
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         String expectedLoanAmount =
                 rc.getLoanAmount();
@@ -979,7 +979,7 @@ public class LoanCalculatorTest extends BaseClass {
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         String expectedEMIAmount =
                 rc.getEmi();
@@ -1065,7 +1065,7 @@ public class LoanCalculatorTest extends BaseClass {
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         String expectedInterestAmount =
                 rc.getInterestRate();
@@ -1146,14 +1146,14 @@ public class LoanCalculatorTest extends BaseClass {
         ConfigReader rc = new ConfigReader();
 
         LoanCalculatorPage lp =
-                new LoanCalculatorPage(driver);
+                new LoanCalculatorPage(getDriver());
 
         String expectedFeesAmount =
                 rc.getFeesCharges();
 
         //lp.scrollDown();
 
-       // Thread.sleep(1000);
+        // Thread.sleep(1000);
 
         // Enter value from config
         lp.enterfeesAmount(expectedFeesAmount);

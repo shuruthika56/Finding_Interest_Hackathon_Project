@@ -9,6 +9,8 @@ import pages.CarLoanEMIPage;
 import utilities.ConfigReader;
 import utilities.ExtentReport;
 
+import java.time.Duration;
+
 public class CarLoanEMITest extends BaseClass {
 
     ExtentReport erm;
@@ -23,7 +25,7 @@ public class CarLoanEMITest extends BaseClass {
     public void verifyNavigationToCarLoan() {
 
         CarLoanEMIPage page =
-                new CarLoanEMIPage(driver);
+                new CarLoanEMIPage(getDriver());
 
         page.navigateToCarLoan();
         System.out.println("Successfully Launched");
@@ -38,11 +40,15 @@ public class CarLoanEMITest extends BaseClass {
     @Test(priority = 2)
     public void verifyCarEMICalculation() {
 
-        CarLoanEMIPage page = new CarLoanEMIPage(driver);
+        CarLoanEMIPage page = new CarLoanEMIPage(getDriver());
         ConfigReader rc = new ConfigReader();
 
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
         page.enterLoanAmount(rc.getLoanAmount());
+
         page.enterInterest(rc.getInterestRate());
+
         page.enterTenure(rc.getLoanTenure());
 
         String emi = page.getEmiValue();
@@ -58,7 +64,7 @@ public class CarLoanEMITest extends BaseClass {
     @Test(priority = 3)
     public void verifyFirstMonthInterest() throws Exception{
 
-        CarLoanEMIPage page = new CarLoanEMIPage(driver);
+        CarLoanEMIPage page = new CarLoanEMIPage(getDriver());
 
         page.scrollDown();
         page.clickTable();
@@ -66,20 +72,20 @@ public class CarLoanEMITest extends BaseClass {
                 page.getFirstMonthInterest();
         System.out.println("First Month Interest : " + interest);
 
-       Assert.assertFalse(
-               interest.isEmpty(),
-               "Interest amount is not displayed");
+        Assert.assertFalse(
+                interest.isEmpty(),
+                "Interest amount is not displayed");
         erm.logPass("Monthly Interest is calculated successfully");
     }
 
     @Test(priority = 4)
-    public void verifyFirstMonthPrincipal() {
+    public void verifyFirstMonthPrincipal() throws Exception{
 
-        CarLoanEMIPage page = new CarLoanEMIPage(driver);
+        CarLoanEMIPage page = new CarLoanEMIPage(getDriver());
 
-         page.scrollDown();
+        page.scrollDown();
 
-         page.clickTable();
+        page.clickTable();
 
         String principal =
                 page.getFirstMonthPrincipal();

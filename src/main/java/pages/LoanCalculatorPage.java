@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class LoanCalculatorPage extends CommonLocators{
+public class LoanCalculatorPage {
 
     WebDriver driver;
 
@@ -28,19 +28,6 @@ public class LoanCalculatorPage extends CommonLocators{
     @FindBy(xpath="//*[@id='menu-item-2423']/a")
     WebElement loanCal;
 
-
-
-// EMI Calculator Fields
-
-   /* @FindBy(id="loanamount")
-    WebElement loanAmount;
-
-    @FindBy(id="loaninterest")
-    WebElement interestRate;
-
-    @FindBy(id="loanterm")
-    WebElement loanTenure;*/
-
     @FindBy(xpath="//body")
     WebElement body;
 
@@ -56,7 +43,7 @@ public class LoanCalculatorPage extends CommonLocators{
     @FindBy(id="loanyears")
     WebElement yearsBtn;
 
-    @FindBy(xpath="//*[@id='ltermwrapper']/div[1]/div/div/div/div/div/label[2]")
+    @FindBy(xpath="//*[@id='ltermwrapper']//label[2]")   // //*[@id='ltermwrapper']/div[1]/div/div/div/div/div/label[2]
     WebElement monthsBtn;
 
     // Sliders
@@ -77,26 +64,6 @@ public class LoanCalculatorPage extends CommonLocators{
     @FindBy(xpath="//*[@id='loanemislider']/span")
     WebElement emiSlider;
 
-
-    /*public void clickMenu(){
-
-
-        System.out.println("Displayed = " + menu.isDisplayed());
-        System.out.println("Enabled = " + menu.isEnabled());
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        wait.until(ExpectedConditions.elementToBeClickable(menu));
-
-        menu.click();
-
-
-        System.out.println("Displayed = " + menu.isDisplayed());
-        System.out.println("Enabled = " + menu.isEnabled());
-
-
-    }*/
-
     @FindBy(id="loan-amount-calc")
     WebElement lAmountCal;
 
@@ -105,6 +72,15 @@ public class LoanCalculatorPage extends CommonLocators{
 
     @FindBy(xpath = "//*[contains(text(),'Interest Rate ')]")
     WebElement lInterestCal;
+
+    @FindBy(id = "loanamount")
+    WebElement loanAmount;
+
+    @FindBy(id = "loaninterest")
+    WebElement interestRate;
+
+    @FindBy(id = "loanterm")
+    WebElement loanTenure;
 
     public void clickLoanAmount(){
 
@@ -150,7 +126,7 @@ public class LoanCalculatorPage extends CommonLocators{
 
 
         wait.until(ExpectedConditions.elementToBeClickable(
-               lTenureCal));
+                lTenureCal));
 
         js.executeScript(
                 "arguments[0].click();",
@@ -191,6 +167,7 @@ public class LoanCalculatorPage extends CommonLocators{
     public void enterLoanAmount(String amount) {
 
         loanAmount.sendKeys(Keys.CONTROL + "a");
+        loanAmount.sendKeys(Keys.BACK_SPACE);
         loanAmount.sendKeys(amount);
     }
 
@@ -214,6 +191,7 @@ public class LoanCalculatorPage extends CommonLocators{
     public void enterInterestAmount(String amount) {
 
         interestRate.sendKeys(Keys.CONTROL + "a");
+        interestRate.sendKeys(Keys.BACK_SPACE);
         interestRate.sendKeys(amount);
     }
 
@@ -247,6 +225,7 @@ public class LoanCalculatorPage extends CommonLocators{
     public void enterTenureAmount(String amount) {
 
         loanTenure.sendKeys(Keys.CONTROL + "a");
+        loanTenure.sendKeys(Keys.BACK_SPACE);
         loanTenure.sendKeys(amount);
     }
 
@@ -270,6 +249,7 @@ public class LoanCalculatorPage extends CommonLocators{
     public void enterfeesAmount(String amount) {
 
         loanFees.sendKeys(Keys.CONTROL + "a");
+        loanFees.sendKeys(Keys.BACK_SPACE);
         loanFees.sendKeys(amount);
     }
 
@@ -293,6 +273,7 @@ public class LoanCalculatorPage extends CommonLocators{
     public void enterEMIAmount(String amount) {
 
         emi.sendKeys(Keys.CONTROL + "a");
+        emi.sendKeys(Keys.BACK_SPACE);
         emi.sendKeys(amount);
     }
 
@@ -312,14 +293,4 @@ public class LoanCalculatorPage extends CommonLocators{
 
         act.dragAndDropBy(emiSlider, 60, 0).perform();
     }
-
-
-
-
-
-
-
-
-
-
 }

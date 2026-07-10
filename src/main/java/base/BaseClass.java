@@ -1,67 +1,88 @@
 package base;
-
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.testng.annotations.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import utilities.ConfigReader;
-
-
 
 import java.time.Duration;
 
-
 public class BaseClass {
 
-    public static WebDriver driver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
     ConfigReader config = new ConfigReader();
 
-    public WebDriver getDriver(String browser) {
-        switch(browser) {
+    public static WebDriver getDriver() {
+
+        return driver.get();
+    }
+
+    public WebDriver createDriver(String browser) {
+
+        WebDriver localDriver = null;
+
+        switch (browser.toLowerCase()) {
+
             case "chrome":
-                driver=new ChromeDriver();
+                localDriver = new ChromeDriver();
                 break;
+
             case "edge":
-                driver=new EdgeDriver();
+
+                localDriver = new EdgeDriver();
                 break;
+
             case "firefox":
-                driver=new FirefoxDriver();
+                localDriver = new FirefoxDriver();
                 break;
+
             case "safari":
-                driver=new SafariDriver();
+                localDriver = new SafariDriver();
                 break;
+
             case "internetexplorer":
-                driver=new InternetExplorerDriver();
-                break;
-            default:
+                localDriver = new InternetExplorerDriver();
                 break;
         }
-        return driver;
+
+        return localDriver;
     }
-    @BeforeSuite
+
+    //    @BeforeSuite
+    @BeforeClass
     public void setup() {
 
+        WebDriver localDriver = createDriver(config.getBrowser());
 
+        driver.set(localDriver);
 
-         driver = getDriver(config.getBrowser());
+        getDriver().manage().window().maximize();
 
-        driver.manage().window().maximize();
-
-        driver.manage().timeouts()
+        getDriver().manage().timeouts()
                 .implicitlyWait(Duration.ofSeconds(10));
 
-        driver.get(config.getUrl());
+        getDriver().get(config.getUrl());
+
+        System.out.println("Thread ID = "
+                + Thread.currentThread().getId());
     }
 
-    @AfterSuite
+    //    @AfterSuite
+    @AfterClass
     public void tearDown() {
 
-      if (driver != null) {
-           driver.quit();
-     }
+        if (getDriver() != null) {
 
+            getDriver().quit();
+
+            driver.remove();
+        }
     }
 }

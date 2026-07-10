@@ -32,14 +32,17 @@ public class ExtentReport {
     }
 
     public void createTest(String testName) {
+
         testLogger = extentreport.createTest(testName);
     }
 
     public void logPass(String message) {
+
         testLogger.pass(message);
     }
 
     public void flushReports() {
+
         extentreport.flush();
     }
 

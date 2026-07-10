@@ -5,15 +5,22 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.JavascriptExecutor;
+import utilities.WaitUtility;
 
-public class CarLoanEMIPage  extends CommonLocators{
+import java.time.Duration;
 
-   WebDriver driver;
+public class CarLoanEMIPage {
+
+    WebDriver driver;
 
     public CarLoanEMIPage(WebDriver driver) {
 
+
+
         this.driver = driver;
         PageFactory.initElements(driver, this);
+
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     // Menu
@@ -21,16 +28,7 @@ public class CarLoanEMIPage  extends CommonLocators{
     @FindBy(linkText = "Car Loan")
     WebElement carLoanMenu;
 
-    // Textboxes
 
-   /* @FindBy(id = "loanamount")
-    WebElement loanAmount;
-
-    @FindBy(id = "loaninterest")
-    WebElement interestRate;
-
-    @FindBy(id = "loanterm")
-    WebElement loanTenure;*/
 
     // EMI Result
 
@@ -46,13 +44,22 @@ public class CarLoanEMIPage  extends CommonLocators{
     WebElement btn;
 
 
-    @FindBy(xpath = "//*[@id='monthyear2026']/td/div/table/tbody/tr[1]/td[3]")
+    @FindBy(xpath = "//*[@id='monthyear2026']//tr[1]/td[3]")
     WebElement firstMonthInterest;
 
     // Month 1 Principal
 
-    @FindBy(xpath = "//*[@id='monthyear2026']/td/div/table/tbody/tr[1]/td[2]")
+    @FindBy(xpath = "//*[@id='monthyear2026']//tr[1]/td[2]")
     WebElement firstMonthPrincipal;
+
+    @FindBy(id = "loanamount")
+    WebElement loanAmount;
+
+    @FindBy(id = "loaninterest")
+    WebElement interestRate;
+
+    @FindBy(id = "loanterm")
+    WebElement loanTenure;
 
 
     public void navigateToCarLoan() {
@@ -70,21 +77,21 @@ public class CarLoanEMIPage  extends CommonLocators{
     public void enterLoanAmount(String amount) {
 
         loanAmount.sendKeys(Keys.CONTROL + "a");
-        //loanAmount.sendKeys(Keys.BACK_SPACE);
+        loanAmount.sendKeys(Keys.BACK_SPACE);
         loanAmount.sendKeys(amount);
     }
 
     public void enterInterest(String interest) {
 
         interestRate.sendKeys(Keys.CONTROL + "a");
-        //interestRate.sendKeys(Keys.BACK_SPACE);
+        interestRate.sendKeys(Keys.BACK_SPACE);
         interestRate.sendKeys(interest);
     }
 
     public void enterTenure(String tenure) {
 
         loanTenure.sendKeys(Keys.CONTROL + "a");
-        //loanTenure.sendKeys(Keys.BACK_SPACE);
+        loanTenure.sendKeys(Keys.BACK_SPACE);
         loanTenure.sendKeys(tenure);
     }
 
@@ -97,7 +104,9 @@ public class CarLoanEMIPage  extends CommonLocators{
         js.executeScript("window.scrollBy(0,1200)");
     }
 
-    public void clickTable(){
+    public void clickTable() throws Exception{
+
+        WaitUtility.waitForClickability(driver,btn,10);
         btn.click();
 
         try {

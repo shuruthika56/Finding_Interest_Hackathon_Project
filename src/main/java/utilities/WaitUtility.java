@@ -11,9 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitUtility {
 
-    public static void waitForVisibility(WebDriver driver, List<WebElement> searchList, int seconds) throws TimeoutException {
+    public static void waitForVisibility(WebDriver driver, WebElement element, int seconds) throws TimeoutException {
 
-        new WebDriverWait(driver, Duration.ofSeconds(seconds)).until(ExpectedConditions.visibilityOfAllElements(searchList));
+        new WebDriverWait(driver, Duration.ofSeconds(seconds)).until(ExpectedConditions.visibilityOfAllElements(element));
 
     }
 
@@ -22,8 +22,5 @@ public class WaitUtility {
         new WebDriverWait(driver, Duration.ofSeconds(seconds)).until(ExpectedConditions.elementToBeClickable(element));
 
     }
-    public static void waitForVisibility(WebDriver driver, WebElement element, int seconds) throws TimeoutException {
-        new WebDriverWait(driver, Duration.ofSeconds(seconds))
-                .until(ExpectedConditions.visibilityOf(element));
-    }
+
 }
