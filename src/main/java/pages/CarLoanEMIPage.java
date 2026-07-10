@@ -5,6 +5,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.JavascriptExecutor;
+import utilities.WaitUtility;
+
+import java.time.Duration;
 
 public class CarLoanEMIPage {
 
@@ -12,8 +15,12 @@ public class CarLoanEMIPage {
 
     public CarLoanEMIPage(WebDriver driver) {
 
+
+
         this.driver = driver;
         PageFactory.initElements(driver, this);
+
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     // Menu
@@ -21,16 +28,7 @@ public class CarLoanEMIPage {
     @FindBy(linkText = "Car Loan")
     WebElement carLoanMenu;
 
-    // Textboxes
 
-   /* @FindBy(id = "loanamount")
-    WebElement loanAmount;
-
-    @FindBy(id = "loaninterest")
-    WebElement interestRate;
-
-    @FindBy(id = "loanterm")
-    WebElement loanTenure;*/
 
     // EMI Result
 
@@ -106,7 +104,9 @@ public class CarLoanEMIPage {
         js.executeScript("window.scrollBy(0,1200)");
     }
 
-    public void clickTable(){
+    public void clickTable() throws Exception{
+
+        WaitUtility.waitForClickability(driver,btn,10);
         btn.click();
 
         try {

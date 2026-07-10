@@ -79,7 +79,7 @@ public class CarLoanEMITest extends BaseClass {
     }
 
     @Test(priority = 4)
-    public void verifyFirstMonthPrincipal() {
+    public void verifyFirstMonthPrincipal() throws Exception{
 
         CarLoanEMIPage page = new CarLoanEMIPage(getDriver());
 
